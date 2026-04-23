@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatGPT Image Batch Generator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>ChatGPT Image Batch Generator</h1>
+      <p>Upload references, add a prompt, and generate multiple images in one request.</p>
+
+      <form id="generateForm">
+        <label>
+          OpenAI API key (client-side, local use only)
+          <input id="apiKey" name="apiKey" type="password" placeholder="sk-..." required />
+        </label>
+
+        <label>
+          Prompt
+          <textarea id="prompt" name="prompt" rows="4" placeholder="Example: Make a clean product ad using these references" required></textarea>
+        </label>
+
+        <div class="row">
+          <label>
+            Number of images (1-10)
+            <input type="number" id="n" name="n" min="1" max="10" value="4" required />
+          </label>
+
+          <label>
+            Model
+            <select id="model" name="model">
+              <option value="gpt-image-1" selected>gpt-image-1</option>
+            </select>
+          </label>
+
+          <label>
+            Size
+            <select id="size" name="size">
+              <option value="1024x1024" selected>1024x1024</option>
+              <option value="1536x1024">1536x1024</option>
+              <option value="1024x1536">1024x1536</option>
+              <option value="auto">auto</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          Background
+          <select id="background" name="background">
+            <option value="auto" selected>auto</option>
+            <option value="opaque">opaque</option>
+            <option value="transparent">transparent</option>
+          </select>
+        </label>
+
+        <label>
+          Reference images (up to 16)
+          <input type="file" id="references" name="references" accept="image/png,image/jpeg,image/webp" multiple required />
+        </label>
+
+        <button type="submit">Generate</button>
+      </form>
+
+      <section id="status"></section>
+      <section id="gallery" class="gallery"></section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
